@@ -1,2 +1,9 @@
 git init
 git add .
+git commit -m "Elso commit"
+	git config user.email "balazsmagor222@gmail.com"
+	git config user.name "Balazs Magor"
+git commit -m "Elso commit"
+git branch -M main
+git remote add origin https://github.com/magor0/kisallat.git
+git push -u origin main
