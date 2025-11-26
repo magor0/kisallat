@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisállat</title>
+    <style>
+        body {
+            background-color: mediumspringgreen;
+        }
+        #box {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 550px;
+            margin: 0px auto;
+        }
+        #felso {
+            display: flex;
+        }
+        #kep {
+            width: 300px; height: 200px;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px black;
+        }
+        #nyilak {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin: 0px 10px;
+        }
+        #nyilak img:hover {
+            opacity: 90%;
+            cursor: pointer;
+        }
+        #also {
+            width: 500px;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0px;
+        }
+    </style>
+    <script>
+        let allatId = 0;
+        let adat;
+        function start() {
+            letoltes();
+        }
+        async function letoltes() {
+            let f = await fetch("https://barsonyj.github.io/json/kisallat/adat.json");
+            adat = await f.json();
+            
+            console.log(adat);
+            document.getElementById("kep").setAttribute("src", adat[0].kep);
+            document.getElementById("also").innerHTML = adat[0].leiras;
+        }
+
+        function kovetkezo(k) {
+            if (allatId < 7) {
+                allatId += k;
+                document.getElementById("kep").setAttribute("src", adat[allatId].kep);
+                document.getElementById("also").innerHTML = adat[allatId].leiras;
+            }
+        }
+        function elozo(e) {
+            if (allatId > 0) {
+                allatId -= e;
+                document.getElementById("kep").setAttribute("src", adat[allatId].kep);
+                document.getElementById("also").innerHTML = adat[allatId].leiras;
+            }
+        }
+    </script>
+</head>
+<body onload="start();">
+    
+    <div id="box">
+        <div id="felso">
+            <img id="kep" src="">
+            <div id="nyilak">
+                <img src="kovetkezo.png" onclick="kovetkezo(1);">
+                <img src="elozo.png" onclick="elozo(1);">
+            </div>
+        </div>
+        <div id="also">
+            asd
+        </div>
+    </div>
+
+</body>
+</html>
